@@ -9,4 +9,4 @@ Whenever a user visits your site, the app should scrape stories from a news outl
 
      * URL - the url to the original article
 
-     * Feel free to add more content to your database (photos, bylines, and so on).
+   
