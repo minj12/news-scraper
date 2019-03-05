@@ -7,7 +7,7 @@ const path = require ("path");
 
 
 const axios = require("axios");
-var cheerio = require("cheerio");
+const cheerio = require("cheerio");
 
 // models that are required
 let db = require("./models");
@@ -15,14 +15,28 @@ let db = require("./models");
 // process.env Global variable is injected by the Node at runtime for application to use and it represents the state of environment your application is in when it starts.
 const PORT = process.env.PORT || 3001;
 
-var MONGODB_URI = PROCESS
+var MONGODB_URI = process.env.MONGODB_SCRAPE || "mongodb://localhost/freeBeacon";
 
+/ Set mongoose to leverage built in JavaScript ES6 Promises
+
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_SCRAPE);
+
+//Start Express
 const app = express();
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-// Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
+
+// Use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(express.static({"public"}));
+
 // Make public a static folder
 app.use(express.static("public"));
+
+const routers = require("./controller/Routes.js")
+app.use(routers);
