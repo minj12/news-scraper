@@ -15,9 +15,9 @@ let db = require("./models");
 // process.env Global variable is injected by the Node at runtime for application to use and it represents the state of environment your application is in when it starts.
 const PORT = process.env.PORT || 3001;
 
-var MONGODB_URI = process.env.MONGODB_SCRAPE || "mongodb://localhost/freeBeacon";
+var MONGODB_SCRAPE = process.env.MONGODB_SCRAPE || "mongodb://localhost/dailyHerald";
 
-/ Set mongoose to leverage built in JavaScript ES6 Promises
+// Set mongoose to leverage built in JavaScript ES6 Promises
 
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
@@ -40,3 +40,8 @@ app.use(express.static("public"));
 
 const routers = require("./controller/Routes.js")
 app.use(routers);
+
+// Start the server
+app.listen(PORT, function () {
+  console.log("App running on port " + PORT + "!");
+});
