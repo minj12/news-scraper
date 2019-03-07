@@ -5,9 +5,9 @@ let Schema = mongoose.Schema;
 
 let NoteSchema = new Schema({
 
-    title: String,
+    title: {type: String},
 
-    body: String
+    body: {type: String}
     
 });
 
