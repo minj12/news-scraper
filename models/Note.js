@@ -14,5 +14,5 @@ let NoteSchema = new Schema({
 var Note = mongoose.model("Article", ArticleSchema);
 
 //export model
-module.exports = Article;
+module.exports = Note;
 
