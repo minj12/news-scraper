@@ -8,3 +8,10 @@ $("#scrape").on("click", function () {
 //Delete Note button workswith onclick function
 $(".deleteNote").on("click", function () {
     var thisId = $(this).attr("data-note-id");
+
+//Button function for note button
+$(".addNote").on("click", function () {}
+
+//POST function is triggered from the Save Article button in home.handlebars
+
+
