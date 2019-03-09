@@ -2,7 +2,7 @@ $("#scrape").on("click", function () {
     $.ajax({
       method: "GET",
       url: "/scrape",
-    })
+    }).done(function (data){})
 });
 
 //Delete Note button workswith onclick function
