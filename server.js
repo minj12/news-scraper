@@ -5,23 +5,19 @@ const mongoose = require("mongoose");
 const path = require ("path");
 
 
-
-const axios = require("axios");
-const cheerio = require("cheerio");
-
 // models that are required
 let db = require("./models");
 
 // process.env Global variable is injected by the Node at runtime for application to use and it represents the state of environment your application is in when it starts.
 const PORT = process.env.PORT || 3001;
 
-var MONGODB_SCRAPE = process.env.MONGODB_SCRAPE || "mongodb://localhost/dailyHerald";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dailyHerald";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_SCRAPE);
+mongoose.connect(MONGODB_URI);
 
 //Start Express
 const app = express();
@@ -32,8 +28,6 @@ app.use(logger("dev"));
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({extended: true}));
-
-app.use(express.static({"public"}));
 
 // Make public a static folder
 app.use(express.static("public"));
