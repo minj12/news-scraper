@@ -9,7 +9,7 @@ const cheerio = require("cheerio");
 app.get("/scrape", function (req, res) {
 
   // First, we grab the body of the html with request
-  request("https://www.dailyherald.com/news/", function (error, response, html) {
+  request("http://freebeacon.com/columns/", function (error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
 
