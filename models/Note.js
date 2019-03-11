@@ -1,9 +1,10 @@
 //Dependencies
 const mongoose = require("mongoose");
 
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let NoteSchema = new Schema({
+// Schema constructor
+let CommentSchema = new Schema({
 
     title: {type: String},
 
@@ -11,7 +12,7 @@ let NoteSchema = new Schema({
     
 });
 
-var Note = mongoose.model("Article", ArticleSchema);
+let Note = mongoose.model("Note", CommentSchema);
 
 //export model
 module.exports = Note;
