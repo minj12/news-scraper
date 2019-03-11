@@ -4,7 +4,7 @@ const db = require("../models");
 //Items for used for scraping news
 const request = require("request");
 const cheerio = require("cheerio");
-//////////////////////////Routes//////////////////////////////////////////////////////
+// Routes
 // A GET route for scraping the website
 app.get("/scrape", function (req, res) {
 
@@ -14,27 +14,36 @@ app.get("/scrape", function (req, res) {
     var $ = cheerio.load(html);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article").each(function (i, element) {
-      // Save an empty result object
-      var result = {};
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("header").children("h2").text();
-      result.link = $(this).children("header").children("h2").children("a").attr("href");
-      result.condensed = $(this).children(".subheadline").children("a").text();
-      
-      // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
-        .then(function (dbArticle) {
-          // View the added result in the console
-          console.log("db article = " + dbArticle);
-        })
-        .catch(function (err) {
-          // If an error occurred, send it to the client
-          return res.json(err);
-        });
+    $(".article").each(function (i, element) {
+
+      const articleSpan = $(this).find(".secStoryHed span");
+
+      if (articleSpan && articleSpan.text()) {
+        // Save an empty result object
+        var result = {};
+        // Add the text and href of every link, and save them as properties of the result object
+
+        result.title = $(this).find(".secStoryHed span").text();
+        result.link = `https://www.dailyherald.com${$(this).attr("href")}`;
+        result.condensed = $(this).find("span").text();
+
+        // Create a new Article using the `result` object built from scraping
+        db.Article.create(result)
+          .then(function (dbArticle) {
+            // View the added result in the console
+            console.log("db article = " + dbArticle);
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      }
+
+
+
     });
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
+
   });
 });
 
@@ -55,8 +64,8 @@ app.get("/", function (req, res) {
 app.post("/articles/saved/:id", function (req, res) {
   // Use the article id to find and update its saved boolean
   db.Article.findOneAndUpdate({
-      "_id": req.params.id
-    }, {
+    "_id": req.params.id
+  }, {
       "saved": true
     })
     // Execute the above query
@@ -74,12 +83,12 @@ app.post("/articles/saved/:id", function (req, res) {
 
 //Delete the note
 app.delete("/delete/:id", (req, res) => {
-  console.log("id:"+ req.params.id );
-  db.Note.findOneAndRemove({ _id: req.params.id}, function(data){ 
+  console.log("id:" + req.params.id);
+  db.Note.findOneAndRemove({ _id: req.params.id }, function (data) {
     res.send(data);
 
   });
- 
+
 
 
 });
@@ -89,8 +98,8 @@ app.delete("/delete/:id", (req, res) => {
 app.post("/articles/delete/:id", function (req, res) {
   // Use the article id to find and update its saved boolean
   db.Article.findOneAndUpdate({
-      "_id": req.params.id
-    }, {
+    "_id": req.params.id
+  }, {
       "saved": false,
       "notes": []
     })
@@ -101,7 +110,7 @@ app.post("/articles/delete/:id", function (req, res) {
         console.log(err);
       } else {
         // Or send the document to the browser
-        
+
       }
     });
 });
@@ -126,14 +135,14 @@ app.post("/notes/articles/:id", function (req, res) {
   // Create a new note and pass the req.body to the entry
   db.Note.create(req.body)
     .then(function (dbNote) {
-      
+
       return db.Article.findOneAndUpdate({
         _id: req.params.id
       }, {
-        note: dbNote._id
-      }, {
-        new: true
-      });
+          note: dbNote._id
+        }, {
+          new: true
+        });
     })
     .then(function (dbArticle) {
       // If we were able to successfully update an Article, send it back to the client
@@ -143,7 +152,7 @@ app.post("/notes/articles/:id", function (req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
-    console.log("this is posted");
+  console.log("this is posted");
 });
 
 
@@ -162,4 +171,3 @@ app.get("/articles", function (req, res) {
     });
 });
 module.exports = app;
-
