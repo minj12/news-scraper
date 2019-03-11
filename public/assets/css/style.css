@@ -1,5 +1,5 @@
 body {
-    background-color: blue;
+    background-color:	#787878;
     /* font-family: 'Source Code Pro',
     monospace; */
     font-family: 'Old Standard TT',
@@ -55,10 +55,6 @@ li {
         color: white;
 }
 
-
-img {
-
-}
 
 .text-center {
     background-color: rgb(219, 152, 152)

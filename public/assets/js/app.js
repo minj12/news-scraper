@@ -58,7 +58,7 @@ $(".save").on("click", function () {
 
 // Executes a POST when to save note
 $(document).on("click", ".saveNote", function () {
-  console.log("sasve note is clicked");
+  console.log("save note is clicked");
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
   var title = $(".modal-title").attr("data-title");

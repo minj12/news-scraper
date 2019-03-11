@@ -3,10 +3,11 @@ const db = require("../models");
 
 //Items for used for scraping news
 const request = require("request");
- cheerio = require("cheerio");
+const cheerio = require("cheerio");
 // Routes
-// A GET route for scraping the Free Beacon website
+// A GET route for scraping the website
 app.get("/scrape", function (req, res) {
+
   // First, we grab the body of the html with request
   request("https://www.dailyherald.com/news/", function (error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
