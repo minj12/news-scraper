@@ -1,44 +1,53 @@
-<!--home page for  handlebars-->
+<!DOCTYPE html>
+{{!-- main.handlebars --}}
+<html lang="en">
 
-<div class="modal fade modalNote" id="noteModal{{this._id}}" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Notes for {{this.title}}</h4>
-                {{this.body}}
+    <head>
+        <meta charset="UTF-8">
+        <!--jQuery Link-->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!--Bootstrap Links-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-            </div>
-            <div id="result"></div>
-            <div class="modal-body">
-                {{#if   this.note }}
-                {{#each this.note}}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p class="previousNotes">    {{ this.body}}</p>
-                        <button type="button" class="btn btn-danger deleteNote" data-note-id={{this._id}}
-                            data-article-id={{this.title}}>X</button>
-                    </div>
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT|Source+Code+Pro" rel="stylesheet">
+        <!--CSS Style Sheet-->
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+
+        <title>Free Beacon Mongo Scraper</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{!-- PUT IMAGE HERE --}}
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Mongo Scraper</a>
                 </div>
-                {{/each}}
-                {{else}}
-                <div class="panel panel-default">
-                    <div class="panel-body"> message: {{  this.note}}
-                        <h4>No notes for this article yet.</h4>
-                    </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/saved">Saved Articles</a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary" id="scrape">Scrape Articles</button>
+                        </li>
+                    </ul>
                 </div>
-                {{/if}}
-                <div class="form-group">
-                    <textarea id="noteText" class="form-control" rows="4" placeholder="New Note"></textarea>
-                </div>
+            </div>
+        </nav>
+        {{{ body }}}
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary saveNote" data-id={{this._id}}>Save Note</button>
-            </div>
-        </div>
-    </div>
-</div>
+        <!--External JS Link-->
+        <script src="assets/js/app.js"></script>
+
+    </body>
+
+</html>
