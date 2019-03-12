@@ -10,8 +10,13 @@ Whenever a user visits your site, the app scrapes stories from Daily Herald and 
      * Summary - a short summary of the article
 
      * URL - the url to the original article
+## Instructions of use
+   1. Select an articles you would like to save.
+   2. If you don't see an article that you like or see none, press "Scrape Articles".
+   3. 
 
 ## References
-
-    * Week 18: Scrapeing with mongoose
+   ### Class Activities
+    * Week 14: Cat App
+    * Week 18: 20-Scraping with mongoose
    
