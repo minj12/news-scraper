@@ -26,7 +26,7 @@ Whenever a user visits your site, the app scrapes stories from Daily Herald and 
    #### Delete Comment
    1. Go to "Add Note"
    2. Comment will apper with an x button bellow
-
+![alt text](https://github.com/minj12/news-scraper/blob/master/public/assets/images/comment.JPG)
 ## References
    ### Class Activities
    * Week 14: Cat App
