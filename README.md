@@ -1,4 +1,4 @@
-# The News-Scraper (**In-Progress**)
+# The News-Scraper 
 Scrape from News articles
 * Link: https://min-news-scraper.herokuapp.com/ 
 
