@@ -13,6 +13,19 @@ Whenever a user visits your site, the app scrapes stories from Daily Herald and 
 
    * URL - the url to the original article
 
+## Used Tech
+   
+   1. express
+
+   2. express-handlebars
+
+   3. mongoose
+
+   4. cheerio
+
+   5. axios
+
+
 ## Instructions of use
    ### Scraping and Saving Articles 
    1. Select an articles you would like to save.
